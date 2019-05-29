@@ -1,34 +1,14 @@
 <template>
 		<div>
 			<ul>
-				<li>
-				<img src="@/assets/1.jpg" class="thumb" alt="">
-				《the shey》
+				<li v-for="(item,index) in movieData">
+				<img :src="item.img|setWh('128.180')" class="thumb" alt="">
+				{{item.nm}} <img v-if="item.version" src="@/assets/dui.png" alt="">
 					<div class="btn">
 						购票
 					</div>
 				</li>
-				<li>
-				<img src="@/assets/2.jpg" class="thumb" alt="">
-				《faker》
-					<div class="btn">
-						购票
-					</div>
-				</li>
-				<li>
-				<img src="@/assets/3.jpg" class="thumb" alt="">
-				《rookie》
-				<div class="btn">
-						购票
-					</div>
-				</li>
-				<li>
-				<img src="@/assets/4.jpg" class="thumb" alt="">
-				《chedan》
-				<div class="btn">
-						购票
-					</div>
-				</li>
+				
 			</ul>
 		</div>
 </template>
@@ -37,6 +17,21 @@
 			name:'Nowmovie',
 			components:{
 				
+			},
+			data(){
+				return{
+					urltest:'http://jjj/w.h/xxx',
+					movieData:[]
+				}
+			},
+			mounted(){
+				this.axios.get('/api/testcityport/index2.php').then(
+				(res)=>{
+					this.movieData=res.data.data.movieList
+					console.log(this.movieData)
+					//console.log(res.data.data.movieList)
+				})
+			//	console.log(this.urltest|setWh())
 			}
 		}
 
