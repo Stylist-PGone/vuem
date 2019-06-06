@@ -3,7 +3,7 @@
 			<Header title='xxx-movie'></Header>
 			<ul class="bul1">
 				<router-link to='/movie/city' tag='li'>
-					城市
+					{{$store.state.city.nm}}
 				</router-link>
 				<router-link to='/movie/nowmovie'  tag='li'>
 					热映
@@ -19,18 +19,38 @@
 				<router-view/>
 			</keep-alive>
 			<Tabar></Tabar>
+
 		</div>
 </template>
 <script>
 		import Header from '@/components/Header'
 		import Tabar from '@/components/Tabar'
-		
+		import {messagebox} from '@/components/Js'
 		export default{
 			name:'movie',
 			components:{
 				Header,
 				Tabar
+
+			},
+			activated(){
+				console.log(789987)
+				console.log('----'+this.$store.state.city.id)
+				if(this.$store.state.city.id==2){
+					return
+				}
+				messagebox({
+					title:'定位',
+					content:'上海555',
+					cancel:'取消',
+					ok:'切换定位',
 				
+					handleOk:function(){
+						window.localStorage.setItem('nowcity','上海')
+						window.localStorage.setItem('nowid',2)
+						window.location.reload()
+					}
+				})
 			}
 		}
 

@@ -19,8 +19,10 @@ export default{
 			component:()=>import('@/components/Nowmovie')
 		},
 		{
-			path:'/movie',
-			redirect:'/movie/nowmovie'
+			path:'/',
+			redirect:to=>{
+				return '/movie/nowmovie'
+			}
 		}
 	]
 }

@@ -99,6 +99,7 @@
 		margin-left: 2.5%;
 		margin-top: 30px;
 	}
+	
 	.none{
 		display: none;
 	}
